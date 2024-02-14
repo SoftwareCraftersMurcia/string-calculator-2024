@@ -37,7 +37,7 @@ Ejemplo:
 Add("1\n2,3") // 6
 ````
 # Paso 4: Separadores personalizados
-Opcionalmente admite separadores personalizados. Para cambiar el separador, el comienzo de la cadena contendrá una línea separada similar a esta: “//<separator>\n<numbers>”
+Opcionalmente admite separadores personalizados. Para cambiar el separador, el comienzo de la cadena contendrá una línea separada similar a esta: `//<separator>\n<numbers>`
 
 Ejemplo:
 
