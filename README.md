@@ -1,3 +1,83 @@
+# Instrucciones de la Kata
+# Paso 1: Calculadora sencilla
+Cree una calculadora de cadenas simple con un solo método:
+
+class StringCalculator {
+    int Add(string numbers);
+}
+
+El método puede tomar 1 o 2 números separados por comas y devolverá su suma.
+El método devuelve 0 cuando se pasa la cadena vacía.
+
+Ejemplo:
+
+Add("") // 0
+Add("4") // 4
+Add("1,2") // 3
+Comience con el caso de prueba más simple de una cadena vacía y pase a 1 y dos números.
+
+# Paso 2: tamaño de número arbitrario
+Permita que el método Agregar maneje una cantidad desconocida de números.
+
+Ejemplo:
+
+Add("1,2,3,4,5,6,7,8,9") // 45
+
+# Paso 3: separador de nueva línea
+Permita que el método Agregar reconozca nuevas líneas y comas como separadores. Los dos tipos de separadores se pueden utilizar indistintamente.
+
+Concéntrese en el camino feliz: dado que este no es un código de producción, está bien si el código falla si se le proporciona una entrada no válida (por ejemplo ). "1,\n2"
+
+Ejemplo:
+
+Add("1\n2,3") // 6
+
+# Paso 4: Separadores personalizados
+Opcionalmente admite separadores personalizados. Para cambiar el separador, el comienzo de la cadena contendrá una línea separada similar a esta: “//<separator>\n<numbers>”
+
+Ejemplo:
+
+Add("//;\n1;2") // 3
+Tenga en cuenta que todos los escenarios existentes aún deberían ser compatibles.
+
+# Paso 5: no permitir negativos
+Llamar a Add con un número negativo generará una excepción y el negativo que se pasó. negatives not allowed
+
+Si hay varios negativos, muéstrelos todos en el mensaje de excepción.
+
+Ejemplo:
+
+Add("1,-2,-3") // error: negatives not allowed: -2 -3
+Paso 6: ignora los números mayores que 1000
+Se deben ignorar los números mayores que 1000.
+
+Ejemplo:
+
+Add("1001, 2") // 2
+
+# Paso 7: Separadores de longitud arbitraria
+Los separadores pueden tener cualquier longitud si están entre corchetes.
+
+Ejemplo:
+
+Add("//[***]\n1***2***3") // 6
+
+# Paso 8: múltiples separadores de una sola longitud
+Permita múltiples separadores de un solo carácter como este: “//[delim1][delim2]\n”
+
+Ejemplo:
+
+Add("//[*][%]\n1*2%3") // 6
+
+# Paso 9: múltiples separadores de mayor longitud
+Maneja múltiples separadores con cualquier longitud de carácter.
+
+Ejemplo:
+
+Add("//[foo][bar]\n1foo2bar3") // 6
+
+link de la kata: https://www.codurance.com/katas/string-calculator
+
 # Base para hacer tests
 
 Configuración básica para empezar a hacer una kata o aprender a hacer tests en los siguientes lenguajes:
