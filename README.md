@@ -1,11 +1,11 @@
 # Instrucciones de la Kata
 # Paso 1: Calculadora sencilla
 Cree una calculadora de cadenas simple con un solo método:
-
+````
 class StringCalculator {
     int Add(string numbers);
 }
-
+````
 El método puede tomar 1 o 2 números separados por comas y devolverá su suma.
 El método devuelve 0 cuando se pasa la cadena vacía.
 
