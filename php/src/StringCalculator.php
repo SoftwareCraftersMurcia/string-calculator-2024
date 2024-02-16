@@ -6,8 +6,10 @@ class StringCalculator
 {
     public function add(string $value): int
     {
+
         if ($value === "//;\n1;2") {
-            return 3;
+            $delimiter = explode("\n", explode("//", $value)[1])[1]; // por ahí van los tiros :D
+            //var_dump($delimiter);
         }
 
         $numbers = explode(',', $this->convertDelimitersToComma($value));
