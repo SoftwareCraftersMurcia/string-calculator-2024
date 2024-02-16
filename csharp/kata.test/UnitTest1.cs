@@ -63,6 +63,7 @@ public class UnitTest1
     {
         StringCalculator.Add("//;\n1;2").Should().Be(3);
         StringCalculator.Add("//;\n1;4").Should().Be(5);
+        StringCalculator.Add("//;\n1;2,4").Should().Be(7);
     }
 }
 
