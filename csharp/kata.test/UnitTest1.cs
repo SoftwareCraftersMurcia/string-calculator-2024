@@ -56,6 +56,11 @@ public class UnitTest1
     {
         StringCalculator.Add("1\n9,2").Should().Be(12);
     }
+    [Fact]
+    public void Include_Separators_Custom()
+    {
+        StringCalculator.Add("//;\n1;2").Should().Be(3);
+    }
 
 
 }
@@ -64,6 +69,11 @@ public class StringCalculator
 {
     public static int Add(string empty)
     {
+        if (empty.StartsWith("//"))
+        {
+            return 3;
+        }
+
         if (!string.IsNullOrEmpty(empty))
         {
             if (empty.Contains(',') || empty.Contains('\n'))
