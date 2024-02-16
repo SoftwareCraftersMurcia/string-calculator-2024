@@ -45,6 +45,12 @@ public class UnitTest1
         StringCalculator.Add("10,2,5").Should().Be(17);
         StringCalculator.Add("7,5,20,8").Should().Be(40);
     }
+
+    [Fact]
+    public void fksndtny()
+    {
+        StringCalculator.Add("1\n8").Should().Be(9);
+    }
 }
 
 public class StringCalculator
@@ -53,9 +59,9 @@ public class StringCalculator
     {
         if (!string.IsNullOrEmpty(empty))
         {
-            if (empty.Contains(','))
+            if (empty.Contains(',') || empty.Contains('\n'))
             {
-                return empty.Split(',').Sum(int.Parse);
+                return empty.Split(',', '\n').Sum(int.Parse);
             }
 
             return int.Parse(empty);
