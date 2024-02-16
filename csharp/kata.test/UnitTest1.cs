@@ -5,17 +5,16 @@ namespace kata.test;
 public class UnitTest1
 {
     //Example Mock using NSubstitute
-    //private readonly SomeController _sut; //sut is systemUnderTest, use the name that you want 
+    //private readonly SomeController _sut; //sut is systemUnderTest, use the name that you want
     //private readonly ISomeService _someService = Substitute.For<ISomeService>();
 
-    //Constructor is as StartUp 
+    //Constructor is as StartUp
     public UnitTest1()
     {
         //Example using created mock
         //_sut = new SomeController(_someService);
     }
 
-    //Example first test
     [Fact]
     public void Test1()
     {
@@ -28,7 +27,7 @@ public class UnitTest1
         // var response = _sut.SomeMethodController();
 
         //assert
-        // response.Should()..... 
+        // response.Should().....
 
         //Example Using FluentAssertion
         bool firstTest = false;
