@@ -8,10 +8,6 @@ class StringCalculator
     {
         $numbers = explode(',', str_replace("\n", ",", $value));
 
-        if (count($numbers) == 0 || count($numbers) == 1) {
-            return (int) $value;
-        }
-
         return $this->sum($numbers);
     }
 
