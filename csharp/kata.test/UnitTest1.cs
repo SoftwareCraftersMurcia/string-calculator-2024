@@ -51,6 +51,12 @@ public class UnitTest1
     {
         StringCalculator.Add("1\n8").Should().Be(9);
     }
+    [Fact]
+    public void Sum_Numbers_Different_separators()
+    {
+        StringCalculator.Add("1\n9,2").Should().Be(12);
+    }
+
 
 }
 
