@@ -68,22 +68,22 @@ public class UnitTest1
 
 public class StringCalculator
 {
-    public static int Add(string empty)
+    public static int Add(string input)
     {
-        if (!string.IsNullOrEmpty(empty))
+        if (!string.IsNullOrEmpty(input))
         {
             List<char> allSeparators = new List<char>{ ',', '\n' };
 
-            if (empty.StartsWith("//"))
+            if (input.StartsWith("//"))
             {
-                allSeparators.Add(empty[2]);
+                allSeparators.Add(input[2]);
             }
 
-            if (empty.Contains(',') || empty.Contains('\n') || empty.Contains("//"))
+            if (input.Contains(',') || input.Contains('\n') || input.Contains("//"))
             {
                 var result = 0;
 
-                foreach (var number in empty.Split(allSeparators.ToArray()))
+                foreach (var number in input.Split(allSeparators.ToArray()))
                 {
                     if (!int.TryParse(number, out var parsed))
                         continue;
@@ -94,7 +94,7 @@ public class StringCalculator
                 return result;
             }
 
-            return int.Parse(empty);
+            return int.Parse(input);
         }
 
         return 0;
