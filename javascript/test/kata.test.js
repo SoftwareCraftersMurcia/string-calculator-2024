@@ -12,4 +12,10 @@ describe("Kata string-calculator", function () {
     var result = calculator.add('4')
     expect(result).toBe(4)
   });
+
+  it('given two numbers it should return the sum of them', () => {
+    const calculator = new StringCalculator()
+    var result = calculator.add('1,2')
+    expect(result).toBe(3)
+  });
 });
