@@ -54,15 +54,7 @@ public class StringCalculator
         {
             if (empty.Contains(','))
             {
-                var numbers = empty.Split(',');
-                var result = 0;
-
-                foreach (var number in numbers)
-                {
-                    result += int.Parse(number);
-                }
-
-                return result;
+                return empty.Split(',').Sum(int.Parse);
             }
 
             return int.Parse(empty);
