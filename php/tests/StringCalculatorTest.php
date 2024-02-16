@@ -36,4 +36,14 @@ class StringCalculatorTest extends TestCase
 
         self::assertEquals(3, $result);
     }
+
+    /** @test */
+    public function given_two_values_then_return_its_sum_real(): void
+    {
+        $stringCalculator = new StringCalculator();
+
+        $result = $stringCalculator->add("3,4");
+
+        self::assertEquals(7, $result);
+    }
 }
