@@ -16,21 +16,16 @@ public class UnitTest1
     }
 
     [Fact]
-    public void Test1()
+    public void EmptyString_ReturnsZero()
     {
-        // Basic mock with NSubstitute:
-        //arrange
-        // _someService.SomeMethod(Parameters).Returns(return value);
-        // _someService.SomeMethod2(Arg.Any<Guid>()).ReturnsNull();
+        StringCalculator.Add("").Should().Be(0);
+    }
+}
 
-        //act
-        // var response = _sut.SomeMethodController();
-
-        //assert
-        // response.Should().....
-
-        //Example Using FluentAssertion
-        bool firstTest = false;
-        firstTest.Should().Be(true);
+public class StringCalculator
+{
+    public static int Add(string empty)
+    {
+        return 0;
     }
 }
