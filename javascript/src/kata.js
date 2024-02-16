@@ -4,11 +4,25 @@ class StringCalculator {
       return 0
     }
 
-    const sum = numbers.split(',').map((element) => Number(element)).reduce((acumulator, element) => {
-      return Number(acumulator) + Number(element)
-    })
+    const elements = this.#splitElements(numbers)
 
-    return sum
+    const elmentsNumbers = this.#convertToNumbers(elements)
+
+    return this.#sumElements(elmentsNumbers)
+  }
+
+  #splitElements(numbers) {
+    return numbers.split(',')
+  }
+
+  #convertToNumbers(elements) {
+    return elements.map((element) => Number(element))
+  }
+
+  #sumElements(elements) {
+    return elements.reduce((acumulator, element) => {
+        return acumulator + element
+      })
   }
 }
 
