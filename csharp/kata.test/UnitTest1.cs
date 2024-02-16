@@ -51,34 +51,47 @@ public class UnitTest1
     {
         StringCalculator.Add("1\n8").Should().Be(9);
     }
+
     [Fact]
     public void Sum_Numbers_Different_separators()
     {
         StringCalculator.Add("1\n9,2").Should().Be(12);
     }
+
     [Fact]
     public void Include_Separators_Custom()
     {
         StringCalculator.Add("//;\n1;2").Should().Be(3);
+        StringCalculator.Add("//;\n1;4").Should().Be(5);
     }
-
-
 }
 
 public class StringCalculator
 {
     public static int Add(string empty)
     {
-        if (empty.StartsWith("//"))
-        {
-            return 3;
-        }
-
         if (!string.IsNullOrEmpty(empty))
         {
-            if (empty.Contains(',') || empty.Contains('\n'))
+            List<char> allSeparators = new List<char>{ ',', '\n' };
+
+            if (empty.StartsWith("//"))
             {
-                return empty.Split(',', '\n').Sum(int.Parse);
+                allSeparators.Add(empty[2]);
+            }
+
+            if (empty.Contains(',') || empty.Contains('\n') || empty.Contains("//"))
+            {
+                var result = 0;
+
+                foreach (var number in empty.Split(allSeparators.ToArray()))
+                {
+                    if (!int.TryParse(number, out var parsed))
+                        continue;
+
+                    result += parsed;
+                }
+
+                return result;
             }
 
             return int.Parse(empty);
