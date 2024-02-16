@@ -28,7 +28,7 @@ public class UnitTest1
     }
 
     [Fact]
-    public void aaa()
+    public void SumTwoNumber_SepareteByCommas()
     {
         StringCalculator.Add("1,2").Should().Be(3);
     }
