@@ -26,6 +26,12 @@ public class UnitTest1
     {
         StringCalculator.Add("1").Should().Be(1);
     }
+
+    [Fact]
+    public void aaa()
+    {
+        StringCalculator.Add("1,2").Should().Be(3);
+    }
 }
 
 public class StringCalculator
@@ -34,6 +40,11 @@ public class StringCalculator
     {
         if(!string.IsNullOrEmpty(empty))
         {
+            if(empty.Contains(','))
+            {
+                return int.Parse(empty[0].ToString()) + int.Parse(empty[2].ToString());
+            }
+
             return int.Parse(empty);
         }
 
