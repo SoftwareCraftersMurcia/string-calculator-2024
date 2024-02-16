@@ -16,4 +16,14 @@ class StringCalculatorTest extends TestCase
 
         self::assertEquals(0, $result);
     }
+
+    /** @test */
+    public function given_unique_value_then_return_its_self(): void
+    {
+        $stringCalculator = new StringCalculator();
+
+        $result = $stringCalculator->add("4");
+
+        self::assertEquals(4, $result);
+    }
 }
