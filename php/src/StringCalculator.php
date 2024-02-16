@@ -6,14 +6,17 @@ class StringCalculator
 {
     public function add(string $value): int
     {
-        $value = str_replace("\n", ',', $value);
-
-        $numbers = explode(',', $value);
+        $numbers = explode(',', str_replace("\n", ",", $value));
 
         if (count($numbers) == 0 || count($numbers) == 1) {
             return (int) $value;
         }
 
+        return $this->sum($numbers);
+    }
+
+    private function sum(array $numbers): int
+    {
         $num = 0;
 
         foreach($numbers as $number) {
@@ -21,6 +24,5 @@ class StringCalculator
         }
 
         return $num;
-
     }
 }
