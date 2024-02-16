@@ -6,7 +6,7 @@ class StringCalculator
 {
     public function add(string $value): int
     {
-        $numbers = explode(',', str_replace("\n", ",", $value));
+        $numbers = explode(',', $this->convertDelimitersToComma($value));
 
         return $this->sum($numbers);
     }
@@ -20,5 +20,9 @@ class StringCalculator
         }
 
         return $num;
+    }
+
+    private function convertDelimitersToComma(string $value): string {
+        return  str_replace("\n", ",", $value);
     }
 }
