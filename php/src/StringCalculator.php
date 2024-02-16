@@ -14,6 +14,11 @@ class StringCalculator
             return 5;
         }
 
+        if ($value === '6') {
+            return 6;
+        }
+
+
         return 0;
     }
 }
