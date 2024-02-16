@@ -66,4 +66,14 @@ class StringCalculatorTest extends TestCase
 
         self::assertEquals(6, $result);
     }
+
+    /** @test */
+    public function given_one_customized_delimiter_then_return_its_sum(): void
+    {
+        $stringCalculator = new StringCalculator();
+
+        $result = $stringCalculator->add("//;\n1;2");
+
+        self::assertEquals(3, $result);
+    }
 }
