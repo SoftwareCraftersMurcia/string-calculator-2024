@@ -6,4 +6,10 @@ describe("Kata string-calculator", function () {
     var result = calculator.add("");
       expect(result).toBe(0);
   });
+
+  it('given one number it should return it as the result', () => {
+    const calculator = new StringCalculator()
+    var result = calculator.add('4')
+    expect(result).toBe(4)
+  });
 });
