@@ -1,14 +1,12 @@
 class StringCalculator {
-  add(number) {
-    if (number === '4') {
-        return 4
+  add(numbers) {
+    if (numbers === '') {
+      return 0
     }
 
-    if (number === '1,2') {
-        return 3
-    }
-
-    return 0
+    return Number(numbers.split(',').reduce((a, b) => {
+      return Number(a) + Number(b)
+    }))
   }
 }
 

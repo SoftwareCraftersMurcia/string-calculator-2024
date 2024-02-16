@@ -13,9 +13,16 @@ describe("Kata string-calculator", function () {
     expect(result).toBe(4)
   });
 
-  it('given two numbers it should return the sum of them', () => {
-    const calculator = new StringCalculator()
-    var result = calculator.add('1,2')
-    expect(result).toBe(3)
-  });
+  describe('given two numbers it should return the sum of them', () => {
+    it('1 + 2', () => {
+      const calculator = new StringCalculator()
+      var result = calculator.add('1,2')
+      expect(result).toBe(3)
+    });
+    it('2 + 2', () => {
+      const calculator = new StringCalculator()
+      var result = calculator.add('2,2')
+      expect(result).toBe(4)
+    });
+  })
 });
