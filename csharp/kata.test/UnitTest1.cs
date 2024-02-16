@@ -20,12 +20,23 @@ public class UnitTest1
     {
         StringCalculator.Add("").Should().Be(0);
     }
+
+    [Fact]
+    public void StringWithSingleNumber_ReturnsTheNumber()
+    {
+        StringCalculator.Add("1").Should().Be(1);
+    }
 }
 
 public class StringCalculator
 {
     public static int Add(string empty)
     {
+        if(!string.IsNullOrEmpty(empty))
+        {
+            return int.Parse(empty);
+        }
+
         return 0;
     }
 }
