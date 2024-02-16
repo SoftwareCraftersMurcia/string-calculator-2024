@@ -6,6 +6,8 @@ class StringCalculator
 {
     public function add(string $value): int
     {
+        $value = str_replace("\n", ',', $value);
+
         $numbers = explode(',', $value);
 
         if (count($numbers) == 0 || count($numbers) == 1) {
