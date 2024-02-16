@@ -43,6 +43,7 @@ public class UnitTest1
     public void Sum_MoreThanTwoNumbers()
     {
         StringCalculator.Add("10,2,5").Should().Be(17);
+        StringCalculator.Add("7,5,20,8").Should().Be(40);
     }
 }
 
