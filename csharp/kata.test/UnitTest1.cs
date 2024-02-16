@@ -47,10 +47,11 @@ public class UnitTest1
     }
 
     [Fact]
-    public void fksndtny()
+    public void identify_Scape_Character_as_separator()
     {
         StringCalculator.Add("1\n8").Should().Be(9);
     }
+
 }
 
 public class StringCalculator
