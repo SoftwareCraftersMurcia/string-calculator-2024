@@ -46,4 +46,14 @@ class StringCalculatorTest extends TestCase
 
         self::assertEquals(10, $result);
     }
+
+    /** @test */
+    public function given_arbitrary_values_then_return_its_sum(): void
+    {
+        $stringCalculator = new StringCalculator();
+
+        $result = $stringCalculator->add("3,4,1,2,4");
+
+        self::assertEquals(14, $result);
+    }
 }
