@@ -4,16 +4,10 @@ export class StringCalculator {
     
     const parts = numbers.split(",");
 
-    
-    if (parts.length > 2) {
-      const nums = parts.map(val => +val);
-      const sum = nums.reduce((acc, current)=>{
-        return acc + current;
-      }, 0)
-      return sum;
-    }
-
-    if (parts.length > 1) return +parts[0] + +parts[1];
-    return +numbers;
+    const nums = parts.map(val => +val);
+    const sum = nums.reduce((acc, current)=>{
+      return acc + current;
+    }, 0)
+    return sum;
   }
 }
