@@ -32,22 +32,37 @@ public class UnitTest1
     {
         StringCalculator.Add("1,2").Should().Be(3);
     }
+
     [Fact]
     public void SumTwoNumbers_WithMoreThanOneDigit()
     {
         StringCalculator.Add("10,2").Should().Be(12);
     }
+
+    [Fact]
+    public void Sum_MoreThanTwoNumbers()
+    {
+        StringCalculator.Add("10,2,5").Should().Be(17);
+    }
 }
+
 public class StringCalculator
 {
     public static int Add(string empty)
     {
-        if(!string.IsNullOrEmpty(empty))
+        if (!string.IsNullOrEmpty(empty))
         {
-            if(empty.Contains(','))
+            if (empty.Contains(','))
             {
                 var numbers = empty.Split(',');
-                return int.Parse(numbers[0]) + int.Parse(numbers[1]);
+                var result = 0;
+
+                foreach (var number in numbers)
+                {
+                    result += int.Parse(number);
+                }
+
+                return result;
             }
 
             return int.Parse(empty);
