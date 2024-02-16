@@ -8,14 +8,17 @@ class StringCalculator
     {
         $numbers = explode(',', $value);
 
-        if(count($numbers) > 1) {
-            $num = 0;
-            foreach($numbers as $number) {
-                $num += (int) $number;
-            }
-            return $num;
+        if (count($numbers) == 0 || count($numbers) == 1) {
+            return (int) $value;
         }
 
-        return (int) $value;
+        $num = 0;
+
+        foreach($numbers as $number) {
+            $num += (int) $number;
+        }
+
+        return $num;
+
     }
 }
