@@ -4,11 +4,11 @@ class StringCalculator {
       return 0
     }
 
-    const sum = numbers.split(',').reduce((acumulator, element) => {
+    const sum = numbers.split(',').map((element) => Number(element)).reduce((acumulator, element) => {
       return Number(acumulator) + Number(element)
     })
 
-    return Number(sum)
+    return sum
   }
 }
 
