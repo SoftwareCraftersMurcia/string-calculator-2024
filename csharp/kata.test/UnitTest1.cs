@@ -97,8 +97,7 @@ public class StringCalculator
     public static int Add(string input)
     {
         if (string.IsNullOrEmpty(input)) return 0;
-        if (!input.Contains(',') && !input.Contains('\n') && !input.Contains("//"))
-            return int.Parse(input);
+        if (!ContainsMultipleNumbers(input)) return int.Parse(input);
 
         var result = 0;
         var negativeNumbers = new List<int>();
@@ -120,6 +119,9 @@ public class StringCalculator
 
         return result;
     }
+
+    static bool ContainsMultipleNumbers(string input)
+        => input.Contains(',') || input.Contains('\n') || input.Contains("//");
 
     static IEnumerable<char> AllSeparatorsFrom(string input)
         => input.Contains("//") ? InitialSeparators.Append(input[2]) : InitialSeparators;
