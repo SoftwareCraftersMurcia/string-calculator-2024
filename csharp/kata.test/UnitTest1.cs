@@ -83,7 +83,7 @@ public class UnitTest1
     }
 
     [Fact]
-    public void afsafsaf()
+    public void IgnoreNumbersGreaterThan1000()
     {
         StringCalculator.Add("5,2,1000").Should().Be(1007);
         StringCalculator.Add("5,2,1001").Should().Be(7);
