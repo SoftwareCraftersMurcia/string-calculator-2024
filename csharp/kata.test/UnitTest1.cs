@@ -96,12 +96,7 @@ public class StringCalculator
     {
         if (string.IsNullOrEmpty(input)) return 0;
 
-        var allSeparators = new List<char> { ',', '\n' };
-
-        if (input.StartsWith("//"))
-        {
-            allSeparators.Add(input[2]);
-        }
+        var allSeparators = AllSeparatorsFrom(input);
 
         if (!input.Contains(',') && !input.Contains('\n') && !input.Contains("//"))
             return int.Parse(input);
@@ -126,5 +121,15 @@ public class StringCalculator
 
         return result;
 
+    }
+
+    static List<char> AllSeparatorsFrom(string input)
+    {
+        var allSeparators = new List<char> { ',', '\n' };
+
+        if (input.StartsWith("//"))
+            allSeparators.Add(input[2]);
+
+        return allSeparators;
     }
 }
