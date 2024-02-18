@@ -96,28 +96,43 @@ public class StringCalculator
 
     public static int Add(string input)
     {
-        if (string.IsNullOrEmpty(input)) return 0;
-        if (!ContainsMultipleNumbers(input)) return int.Parse(input);
+        if (string.IsNullOrEmpty(input))
+            return 0;
+        if (!ContainsMultipleNumbers(input))
+            return int.Parse(input);
+
+        IdentifyNegativeNumbers(input);
 
         var result = 0;
-        var negativeNumbers = new List<int>();
 
         foreach (var number in input.Split(AllSeparatorsFrom(input).ToArray()))
         {
             if (!int.TryParse(number, out var parsed))
                 continue;
-            if (parsed < 0)
-                negativeNumbers.Add(parsed);
             if (parsed > 1000)
                 continue;
 
             result += parsed;
         }
 
+        return result;
+    }
+
+    static void IdentifyNegativeNumbers(string input)
+    {
+        var negativeNumbers = new List<int>();
+
+        foreach (var number in input.Split(AllSeparatorsFrom(input).ToArray()))
+        {
+            if (!int.TryParse(number, out var parsed))
+                continue;
+
+            if (parsed < 0)
+                negativeNumbers.Add(parsed);
+        }
+
         if (negativeNumbers.Count > 0)
             throw new ArgumentException(string.Join(',', negativeNumbers));
-
-        return result;
     }
 
     static bool ContainsMultipleNumbers(string input)
