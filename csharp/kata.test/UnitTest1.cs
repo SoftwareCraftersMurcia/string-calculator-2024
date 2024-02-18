@@ -103,19 +103,17 @@ public class StringCalculator
 
         IdentifyNegativeNumbers(input);
 
-        var result = 0;
+        return input.Split(AllSeparatorsFrom(input).ToArray()).Select(Parsed).Sum();
+    }
 
-        foreach (var number in input.Split(AllSeparatorsFrom(input).ToArray()))
-        {
-            if (!int.TryParse(number, out var parsed))
-                continue;
-            if (parsed > 1000)
-                continue;
+    static int Parsed(string toBeParsed)
+    {
+        if (!int.TryParse(toBeParsed, out var parsed))
+            return 0;
+        if (parsed > 1000)
+            return 0;
 
-            result += parsed;
-        }
-
-        return result;
+        return parsed;
     }
 
     static void IdentifyNegativeNumbers(string input)
