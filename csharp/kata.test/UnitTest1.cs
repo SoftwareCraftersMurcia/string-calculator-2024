@@ -117,19 +117,12 @@ public class StringCalculator
 
     static void EnsureNoNegativeNumbers(string input)
     {
-        var negativeNumbers = new List<int>();
+        var negativeNumbers = input.Split(AllSeparatorsFrom(input).ToArray()).Select(Parsed).Where((n) => n < 0);
 
-        foreach (var number in input.Split(AllSeparatorsFrom(input).ToArray()))
-        {
-            if (!int.TryParse(number, out var parsed))
-                continue;
+        if (!negativeNumbers.Any())
+            return;
 
-            if (parsed < 0)
-                negativeNumbers.Add(parsed);
-        }
-
-        if (negativeNumbers.Count > 0)
-            throw new ArgumentException(string.Join(',', negativeNumbers));
+        throw new ArgumentException(string.Join(',', negativeNumbers));
     }
 
     static bool ContainsMultipleNumbers(string input)
