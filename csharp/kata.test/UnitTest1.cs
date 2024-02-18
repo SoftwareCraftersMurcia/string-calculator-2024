@@ -100,8 +100,7 @@ public class StringCalculator
             return 0;
         if (!ContainsMultipleNumbers(input))
             return int.Parse(input);
-
-        IdentifyNegativeNumbers(input);
+        EnsureNoNegativeNumbers(input);
 
         return input.Split(AllSeparatorsFrom(input).ToArray()).Select(Parsed).Sum();
     }
@@ -116,7 +115,7 @@ public class StringCalculator
         return parsed;
     }
 
-    static void IdentifyNegativeNumbers(string input)
+    static void EnsureNoNegativeNumbers(string input)
     {
         var negativeNumbers = new List<int>();
 
