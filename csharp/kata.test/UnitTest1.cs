@@ -92,6 +92,8 @@ public class UnitTest1
 
 public class StringCalculator
 {
+    static IEnumerable<char> InitialSeparators => new List<char> { ',', '\n' };
+
     public static int Add(string input)
     {
         if (string.IsNullOrEmpty(input)) return 0;
@@ -120,16 +122,8 @@ public class StringCalculator
             throw new ArgumentException(string.Join(',', negativeNumbers));
 
         return result;
-
     }
 
-    static List<char> AllSeparatorsFrom(string input)
-    {
-        var allSeparators = new List<char> { ',', '\n' };
-
-        if (input.StartsWith("//"))
-            allSeparators.Add(input[2]);
-
-        return allSeparators;
-    }
+    static IEnumerable<char> AllSeparatorsFrom(string input)
+        => input.Contains("//") ? InitialSeparators.Append(input[2]) : InitialSeparators;
 }
