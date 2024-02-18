@@ -94,42 +94,39 @@ public class StringCalculator
 {
     public static int Add(string input)
     {
-        if (!string.IsNullOrEmpty(input))
+        if (string.IsNullOrEmpty(input)) return 0;
+
+        var allSeparators = new List<char> { ',', '\n' };
+
+        if (input.StartsWith("//"))
         {
-            List<char> allSeparators = new List<char> { ',', '\n' };
-
-            if (input.StartsWith("//"))
-            {
-                allSeparators.Add(input[2]);
-            }
-
-            if (input.Contains(',') || input.Contains('\n') || input.Contains("//"))
-            {
-                var result = 0;
-
-                var negativeNumbers = new List<int>();
-
-                foreach (var number in input.Split(allSeparators.ToArray()))
-                {
-                    if (!int.TryParse(number, out var parsed))
-                        continue;
-                    if (parsed < 0)
-                        negativeNumbers.Add(parsed);
-                    if (parsed > 1000)
-                        continue;
-
-                    result += parsed;
-                }
-
-                if (negativeNumbers.Count > 0)
-                    throw new ArgumentException(string.Join(',', negativeNumbers));
-
-                return result;
-            }
-
-            return int.Parse(input);
+            allSeparators.Add(input[2]);
         }
 
-        return 0;
+        if (input.Contains(',') || input.Contains('\n') || input.Contains("//"))
+        {
+            var result = 0;
+            var negativeNumbers = new List<int>();
+
+            foreach (var number in input.Split(allSeparators.ToArray()))
+            {
+                if (!int.TryParse(number, out var parsed))
+                    continue;
+                if (parsed < 0)
+                    negativeNumbers.Add(parsed);
+                if (parsed > 1000)
+                    continue;
+
+                result += parsed;
+            }
+
+            if (negativeNumbers.Count > 0)
+                throw new ArgumentException(string.Join(',', negativeNumbers));
+
+            return result;
+        }
+
+        return int.Parse(input);
+
     }
 }
