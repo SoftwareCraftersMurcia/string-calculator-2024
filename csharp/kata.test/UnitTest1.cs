@@ -1,3 +1,5 @@
+using NSubstitute.ExceptionExtensions;
+
 namespace kata.test;
 
 //Example first test using xUnit, FluentAssertions and NSubistitute
@@ -65,15 +67,32 @@ public class UnitTest1
         StringCalculator.Add("//;\n1;4").Should().Be(5);
         StringCalculator.Add("//;\n1;2,4").Should().Be(7);
     }
+
+    [Fact]
+    public void ThrowExceptionWhenAttemptingToAddNegativeNumbers()
+    {
+        try
+        {
+            StringCalculator.Add("-1,5");
+            Assert.False(true);
+        }
+        catch (ArgumentException ex)
+        {
+            ex.Message.Should().Be("-1");
+        }
+    }
 }
 
 public class StringCalculator
 {
     public static int Add(string input)
     {
+        if (input.Contains('-'))
+            throw new ArgumentException("-1");
+
         if (!string.IsNullOrEmpty(input))
         {
-            List<char> allSeparators = new List<char>{ ',', '\n' };
+            List<char> allSeparators = new List<char> { ',', '\n' };
 
             if (input.StartsWith("//"))
             {
