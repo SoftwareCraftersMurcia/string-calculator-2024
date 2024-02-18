@@ -81,6 +81,13 @@ public class UnitTest1
             ex.Message.Should().Be("-1,-4");
         }
     }
+
+    [Fact]
+    public void afsafsaf()
+    {
+        StringCalculator.Add("5,2,1000").Should().Be(1007);
+        StringCalculator.Add("5,2,1001").Should().Be(7);
+    }
 }
 
 public class StringCalculator
@@ -106,9 +113,10 @@ public class StringCalculator
                 {
                     if (!int.TryParse(number, out var parsed))
                         continue;
-
                     if (parsed < 0)
                         negativeNumbers.Add(parsed);
+                    if (parsed > 1000)
+                        continue;
 
                     result += parsed;
                 }
