@@ -73,12 +73,12 @@ public class UnitTest1
     {
         try
         {
-            StringCalculator.Add("-1,5");
+            StringCalculator.Add("-1,5,-4");
             Assert.False(true);
         }
         catch (ArgumentException ex)
         {
-            ex.Message.Should().Be("-1");
+            ex.Message.Should().Be("-1,-4");
         }
     }
 }
@@ -87,9 +87,6 @@ public class StringCalculator
 {
     public static int Add(string input)
     {
-        if (input.Contains('-'))
-            throw new ArgumentException("-1");
-
         if (!string.IsNullOrEmpty(input))
         {
             List<char> allSeparators = new List<char> { ',', '\n' };
@@ -103,13 +100,21 @@ public class StringCalculator
             {
                 var result = 0;
 
+                var negativeNumbers = new List<int>();
+
                 foreach (var number in input.Split(allSeparators.ToArray()))
                 {
                     if (!int.TryParse(number, out var parsed))
                         continue;
 
+                    if (parsed < 0)
+                        negativeNumbers.Add(parsed);
+
                     result += parsed;
                 }
+
+                if (negativeNumbers.Count > 0)
+                    throw new ArgumentException(string.Join(',', negativeNumbers));
 
                 return result;
             }
