@@ -97,16 +97,13 @@ public class StringCalculator
     public static int Add(string input)
     {
         if (string.IsNullOrEmpty(input)) return 0;
-
-        var allSeparators = AllSeparatorsFrom(input);
-
         if (!input.Contains(',') && !input.Contains('\n') && !input.Contains("//"))
             return int.Parse(input);
 
         var result = 0;
         var negativeNumbers = new List<int>();
 
-        foreach (var number in input.Split(allSeparators.ToArray()))
+        foreach (var number in input.Split(AllSeparatorsFrom(input).ToArray()))
         {
             if (!int.TryParse(number, out var parsed))
                 continue;
