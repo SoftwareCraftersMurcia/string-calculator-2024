@@ -49,7 +49,7 @@ public class StringCalculator
 
         if (input.Contains('['))
             return InitialSeparators
-                .Append(ContentOf(input.Split('\n')[0].Remove(0, 2)));
+                .Concat(AllContentsOf(input.Split('\n')[0].Remove(0, 2)));
 
         return InitialSeparators.Append(input[2].ToString());
     }

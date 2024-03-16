@@ -104,14 +104,14 @@ public class UnitTest1
         StringCalculator.Add("//[&&]\n2&&5&&4").Should().Be(2 + 5 + 4);
     }
 
-    // [Fact]
-    // public void MultipleSeparators_OfLengthOne()
-    // {
-    //     StringCalculator.Add("//[&][*]\n2&5*4").Should().Be(2 + 5 + 4);
-    // }
+    [Fact]
+    public void MultipleSeparators_OfLengthOne()
+    {
+        StringCalculator.Add("//[&][*]\n2&5*4").Should().Be(2 + 5 + 4);
+    }
 
     [Fact]
-    public void afasfafasf()
+    public void ContentOfMultipleSeparators()
     {
         StringCalculator.AllContentsOf("[&][*]").Should().Contain("&").And.Contain("*");
     }
