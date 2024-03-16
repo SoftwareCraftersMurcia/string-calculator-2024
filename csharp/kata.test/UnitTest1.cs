@@ -7,17 +7,6 @@ namespace kata.test;
 // https://github.com/SoftwareCraftersMurcia/string-calculator-2024 <-- The kata
 public class UnitTest1
 {
-    //Example Mock using NSubstitute
-    //private readonly SomeController _sut; //sut is systemUnderTest, use the name that you want
-    //private readonly ISomeService _someService = Substitute.For<ISomeService>();
-
-    //Constructor is as StartUp
-    public UnitTest1()
-    {
-        //Example using created mock
-        //_sut = new SomeController(_someService);
-    }
-
     [Fact]
     public void EmptyString_ReturnsZero()
     {
@@ -84,6 +73,20 @@ public class UnitTest1
     }
 
     [Fact]
+    public void ThrowException_SingleNumber_Negative()
+    {
+        try
+        {
+            StringCalculator.Add("-1");
+            Assert.False(true);
+        }
+        catch (ArgumentException ex)
+        {
+            ex.Message.Should().Be("-1");
+        }
+    }
+
+    [Fact]
     public void IgnoreNumbersGreaterThan1000()
     {
         StringCalculator.Add("5,2,1000").Should().Be(1007);
@@ -97,13 +100,16 @@ public class StringCalculator
 
     public static int Add(string input)
     {
+        EnsureNoNegativeNumbers(input);
+
         if (string.IsNullOrEmpty(input))
             return 0;
         if (!ContainsMultipleNumbers(input))
             return int.Parse(input);
-        EnsureNoNegativeNumbers(input);
 
-        return input.Split(AllSeparatorsFrom(input).ToArray()).Select(Parsed).Sum();
+        return input.Split(AllSeparatorsFrom(input).ToArray())
+            .Select(Parsed)
+            .Sum();
     }
 
     static int Parsed(string toBeParsed)
