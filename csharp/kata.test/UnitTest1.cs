@@ -4,6 +4,7 @@ namespace kata.test;
 
 //Example first test using xUnit, FluentAssertions and NSubistitute
 //Commented things are only an example.
+// https://github.com/SoftwareCraftersMurcia/string-calculator-2024 <-- The kata
 public class UnitTest1
 {
     //Example Mock using NSubstitute
