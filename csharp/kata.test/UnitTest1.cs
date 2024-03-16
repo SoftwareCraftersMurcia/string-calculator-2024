@@ -98,6 +98,9 @@ public class UnitTest1
     {
         StringCalculator.Add("//[*]\n5*2").Should().Be(5 + 2);
         StringCalculator.Add("//[**]\n5**3").Should().Be(5 + 3);
+        StringCalculator.Add("//[*&*]\n2*&*3").Should().Be(2 + 3);
+        StringCalculator.Add("//[&&&&]\n2&&&&5").Should().Be(2 + 5);
+        StringCalculator.Add("//[&&]\n2&&5&&4").Should().Be(2 + 5 + 4);
     }
 
     [Fact]
