@@ -49,10 +49,13 @@ public class StringCalculator
 
         if (input.Contains('['))
             return InitialSeparators
-                .Concat(AllContentsOf(input.Split('\n')[0].Remove(0, 2)));
+                .Concat(AllContentsOf(GetArbitraryLengthSeparators(input)));
 
         return InitialSeparators.Append(input[2].ToString());
     }
+
+    private static string GetArbitraryLengthSeparators(string input)
+        => input.Split('\n')[0].Remove(0, 2);
 
     public static string ContentOf(string separator)
         => separator.Remove(separator.Length - 1, 1).Remove(0, 1);
