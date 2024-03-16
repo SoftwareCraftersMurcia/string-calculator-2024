@@ -48,11 +48,18 @@ public class StringCalculator
             return InitialSeparators;
 
         if (input.Contains('['))
-            return InitialSeparators.Append(ContentOf(input.Split('\n')[0].Remove(0, 2)));
+            return InitialSeparators
+                .Append(ContentOf(input.Split('\n')[0].Remove(0, 2)));
 
         return InitialSeparators.Append(input[2].ToString());
     }
 
     public static string ContentOf(string separator)
         => separator.Remove(separator.Length - 1, 1).Remove(0, 1);
+
+    public static IEnumerable<string> AllContentsOf(string separators)
+        => separators.Split(']')
+            .Select(x => x + ']')
+            .SkipLast(1)
+            .Select(ContentOf);
 }

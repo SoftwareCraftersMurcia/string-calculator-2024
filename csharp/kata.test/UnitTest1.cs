@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using NSubstitute.ExceptionExtensions;
 
 namespace kata.test;
@@ -101,6 +102,18 @@ public class UnitTest1
         StringCalculator.Add("//[*&*]\n2*&*3").Should().Be(2 + 3);
         StringCalculator.Add("//[&&&&]\n2&&&&5").Should().Be(2 + 5);
         StringCalculator.Add("//[&&]\n2&&5&&4").Should().Be(2 + 5 + 4);
+    }
+
+    // [Fact]
+    // public void MultipleSeparators_OfLengthOne()
+    // {
+    //     StringCalculator.Add("//[&][*]\n2&5*4").Should().Be(2 + 5 + 4);
+    // }
+
+    [Fact]
+    public void afasfafasf()
+    {
+        StringCalculator.AllContentsOf("[&][*]").Should().Contain("&").And.Contain("*");
     }
 
     [Fact]
