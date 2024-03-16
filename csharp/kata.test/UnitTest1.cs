@@ -111,9 +111,17 @@ public class UnitTest1
     }
 
     [Fact]
+    public void MultipleSeparators_OfArbitraryLength()
+    {
+        StringCalculator.Add("//[&&&][**]\n2&&&5**4").Should().Be(2 + 5 + 4);
+        StringCalculator.Add("//[&][**]\n2&6**4").Should().Be(2 + 6 + 4);
+    }
+
+    [Fact]
     public void ContentOfMultipleSeparators()
     {
         StringCalculator.AllContentsOf("[&][*]").Should().Contain("&").And.Contain("*");
+        StringCalculator.AllContentsOf("[&&][***]").Should().Contain("&&").And.Contain("***");
     }
 
     [Fact]
