@@ -94,7 +94,7 @@ public class UnitTest1
     }
 
     [Fact]
-    public void asfafasfsa()
+    public void LongerSeparators()
     {
         StringCalculator.Add("//[*]\n5*2").Should().Be(5 + 2);
         StringCalculator.Add("//[**]\n5**3").Should().Be(5 + 3);
@@ -104,7 +104,7 @@ public class UnitTest1
     }
 
     [Fact]
-    public void asfafasfsaasda()
+    public void ContentOfSeparator()
     {
         StringCalculator.ContentOf("[*]").Should().Be("*");
         StringCalculator.ContentOf("[**]").Should().Be("**");
@@ -164,6 +164,6 @@ public class StringCalculator
         return InitialSeparators.Append(input[2].ToString());
     }
 
-    public static string ContentOf(string input)
-        => input.Remove(input.Length - 1, 1).Remove(0, 1);
+    public static string ContentOf(string separator)
+        => separator.Remove(separator.Length - 1, 1).Remove(0, 1);
 }
