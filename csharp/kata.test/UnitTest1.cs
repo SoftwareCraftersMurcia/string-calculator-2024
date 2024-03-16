@@ -97,6 +97,7 @@ public class UnitTest1
     public void asfafasfsa()
     {
         StringCalculator.Add("//[*]\n5*2").Should().Be(5 + 2);
+        StringCalculator.Add("//[**]\n5**3").Should().Be(5 + 3);
     }
 
     [Fact]
@@ -137,17 +138,13 @@ public class StringCalculator
 
     static void EnsureNoNegativeNumbers(string input)
     {
-        var negativeNumbers = input.Split(AllSeparatorsFrom(input).ToArray(), StringSplitOptions.None).Select(Parsed).Where((n) => n < 0);
+        var negativeNumbers = input.Split(AllSeparatorsFrom(input).ToArray(), StringSplitOptions.None).Select(Parsed)
+            .Where((n) => n < 0);
 
         if (!negativeNumbers.Any())
             return;
 
         throw new ArgumentException(string.Join(',', negativeNumbers));
-    }
-
-    public static string ContentOf(string input)
-    {
-        return input.Remove(input.Length - 1, 1).Remove(0, 1);
     }
 
     static bool ContainsMultipleNumbers(string input)
@@ -158,9 +155,12 @@ public class StringCalculator
         if (!input.Contains("//"))
             return InitialSeparators;
 
-        if (input.Contains("[*]"))
-            return InitialSeparators.Append("*");
+        if (input.Contains('['))
+            return InitialSeparators.Append(ContentOf(input.Split('\n')[0].Remove(0, 2)));
 
         return InitialSeparators.Append(input[2].ToString());
     }
+
+    public static string ContentOf(string input)
+        => input.Remove(input.Length - 1, 1).Remove(0, 1);
 }
