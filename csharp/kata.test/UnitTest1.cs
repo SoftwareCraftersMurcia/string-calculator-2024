@@ -102,7 +102,7 @@ public class UnitTest1
 
 public class StringCalculator
 {
-    static IEnumerable<char> InitialSeparators => new List<char> { ',', '\n' };
+    static IEnumerable<string> InitialSeparators => new List<string> { ",", "\n" };
 
     public static int Add(string input)
     {
@@ -113,7 +113,7 @@ public class StringCalculator
         if (!ContainsMultipleNumbers(input))
             return int.Parse(input);
 
-        return input.Split(AllSeparatorsFrom(input).ToArray())
+        return input.Split(AllSeparatorsFrom(input).ToArray(), StringSplitOptions.None)
             .Select(Parsed)
             .Sum();
     }
@@ -130,7 +130,7 @@ public class StringCalculator
 
     static void EnsureNoNegativeNumbers(string input)
     {
-        var negativeNumbers = input.Split(AllSeparatorsFrom(input).ToArray()).Select(Parsed).Where((n) => n < 0);
+        var negativeNumbers = input.Split(AllSeparatorsFrom(input).ToArray(), StringSplitOptions.None).Select(Parsed).Where((n) => n < 0);
 
         if (!negativeNumbers.Any())
             return;
@@ -141,14 +141,14 @@ public class StringCalculator
     static bool ContainsMultipleNumbers(string input)
         => input.Contains(',') || input.Contains('\n') || input.Contains("//");
 
-    static IEnumerable<char> AllSeparatorsFrom(string input)
+    static IEnumerable<string> AllSeparatorsFrom(string input)
     {
         if (!input.Contains("//"))
             return InitialSeparators;
 
         if (input.Contains("[*]"))
-            return InitialSeparators.Append('*');
+            return InitialSeparators.Append("*");
 
-        return InitialSeparators.Append(input[2]);
+        return InitialSeparators.Append(input[2].ToString());
     }
 }
