@@ -98,6 +98,13 @@ public class UnitTest1
     {
         StringCalculator.Add("//[*]\n5*2").Should().Be(5 + 2);
     }
+
+    [Fact]
+    public void asfafasfsaasda()
+    {
+        StringCalculator.ContentOf("[*]").Should().Be("*");
+        StringCalculator.ContentOf("[**]").Should().Be("**");
+    }
 }
 
 public class StringCalculator
@@ -136,6 +143,11 @@ public class StringCalculator
             return;
 
         throw new ArgumentException(string.Join(',', negativeNumbers));
+    }
+
+    public static string ContentOf(string input)
+    {
+        return input.Remove(input.Length - 1, 1).Remove(0, 1);
     }
 
     static bool ContainsMultipleNumbers(string input)
