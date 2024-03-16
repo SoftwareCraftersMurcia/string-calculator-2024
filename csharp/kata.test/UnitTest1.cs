@@ -92,6 +92,12 @@ public class UnitTest1
         StringCalculator.Add("5,2,1000").Should().Be(1007);
         StringCalculator.Add("5,2,1001").Should().Be(7);
     }
+
+    [Fact]
+    public void asfafasfsa()
+    {
+        StringCalculator.Add("//[*]\n5*2").Should().Be(5 + 2);
+    }
 }
 
 public class StringCalculator
@@ -136,5 +142,13 @@ public class StringCalculator
         => input.Contains(',') || input.Contains('\n') || input.Contains("//");
 
     static IEnumerable<char> AllSeparatorsFrom(string input)
-        => input.Contains("//") ? InitialSeparators.Append(input[2]) : InitialSeparators;
+    {
+        if (!input.Contains("//"))
+            return InitialSeparators;
+
+        if (input.Contains("[*]"))
+            return InitialSeparators.Append('*');
+
+        return InitialSeparators.Append(input[2]);
+    }
 }
